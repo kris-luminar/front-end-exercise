@@ -9,12 +9,18 @@
 body { font: 'Poppins'; }
 
 nav {
-  height: 77px;
+  height: 60px;
   background-image:  linear-gradient(to right, #e98453, #b45277);
   color: white;
   font-family: 'Roboto', Times, serif;
   font-size: 24px;
   padding: 20px;
+}
+nav button {
+  background-color: inherit;
+  color: white;
+  font-family: 'Roboto', Times, serif;
+  font-size: 24px;
 }
 nav img {
   width: 150px;
@@ -25,7 +31,7 @@ nav ul {
   display: flex;
 }
 nav ul li {
-  line-height: 73px;
+  line-height: 60px;
   margin: 0 7px;
 }
 nav ul li:nth-child(3) {
@@ -33,4 +39,9 @@ nav ul li:nth-child(3) {
 }
 nav ul li:nth-child(4){
   margin-left: auto;
+}
+button {
+  border-radius: 6px;
+  border: 2px solid #fff;
+  padding: 7px 20px;
 }
