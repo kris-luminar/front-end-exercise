@@ -31,7 +31,7 @@
 
     <!-- header -->
     <header v-if="!isSubmitted">
-      <h1>Create a Masspay<button class='circle button'>+</button></h1>
+      <h1 v-on:click="createNewRow">Create a Masspay<button class='circle button'>+</button></h1>
     </header>
     <!-- end header -->
     <content>
@@ -54,10 +54,10 @@
             </tr>
           </thead>
           <tbody>
-            <template v-for='recipient in recipients'>
+            <template v-for='recipient in allRecipients'>
               <tr>
                 <td><input name="receiver" type="text" v-model="recipient.email" /></td>
-                <td><input name="amount" type="number" v-model="recipient.amount" /></td>
+                <td><input name="amount" type="text" v-model="recipient.amount" /></td>
               </tr>
             </template>
           </tbody>
@@ -76,10 +76,7 @@
       data: function () {
         return {
           recipients: [
-            { email: 'stuff@stuff.stuff', amount: 444 },
-            { email: 'stuff@things.stuff', amount: 6 },
-            { email: 'stuff@stuff.things', amount: 9 },
-            { email: 'things@stuff.stuff', amount: 300 },
+            { email: '', amount: null }
           ],
           submitted: false
         }
@@ -90,6 +87,14 @@
         },
         isSubmitted() {
           return this.submitted;
+        },
+        allRecipients() {
+          return this.recipients;
+        }
+      },
+      methods: {
+        createNewRow() {
+          this.recipients.push({ email: '', amount: null });
         }
       }
     });
