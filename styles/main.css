@@ -7,7 +7,6 @@ body {
   font-family: 'Roboto', Times, serif;
   font-size: 20px;
 }
-
 nav {
   height: 60px;
   background-image:  linear-gradient(to right, #e98453, #b45277);
@@ -37,6 +36,9 @@ nav ul li:nth-child(3) {
 }
 nav ul li:nth-child(4){
   margin-left: auto;
+}
+h1 {
+  text-align: center;
 }
 button {
   border-radius: 6px;
@@ -90,13 +92,19 @@ form td, form th, form input {
 form td:last-child input {
   text-align: right;
 }
-form span.total {
-  margin-right: 10px;
+.total {
   font-size: 20px;
+}
+span.total {
+  margin-right: 10px;
 }
 content {
   background-color: #f4f7fb;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.gray-caps {
+  text-transform: capitalize;
+  color: #8393aa;
 }
