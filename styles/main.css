@@ -40,6 +40,10 @@ nav ul li:nth-child(4){
 h1 {
   text-align: center;
 }
+p.in-progress-message {
+  font-size: 30px;
+  text-align: center;
+}
 button {
   border-radius: 6px;
   border: 2px solid #fff;
@@ -55,7 +59,7 @@ button.circle {
   width: 50px;
   position: relative;
   top: 25px;
-  left: 90%;;
+  left: 10px;
 }
 header {
   margin: auto;
@@ -63,12 +67,30 @@ header {
 section {
   margin: auto;
 }
+section.success {
+  display: flex;
+  flex-direction: column;
+}
+section.success > * {
+  margin: auto;
+  padding: 10px;
+}
 form {
   color: #000;
   font-family: 'Roboto', Times, serif;
-  margin: auto;
+  /* margin: auto; */
+}
+.card {
   background-color: #fff;
   box-shadow: 0 0 2px 0 rgba(53, 65, 83, 0.12), 0 2px 4px 0 rgba(53, 65, 83, 0.12);
+  /* min-width: 500px; */
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+form table {
+  width: 100%;
 }
 form tr {
   outline: 2px solid #f4f7fb;
@@ -86,6 +108,8 @@ form td input {
   background-color: #f4f7fb;
   border-radius: 5px;
   border-width: 0;
+  min-width: 30%;
+  max-width: 90%;
 }
 form td, form th, form input {
   font-family: 'Roboto', Times, serif;
@@ -100,6 +124,10 @@ form td:last-child input {
 }
 span.total {
   margin-right: 10px;
+}
+div.total.submit {
+  float: right;
+  padding: 10px;
 }
 content {
   background-color: #f4f7fb;
