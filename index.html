@@ -62,10 +62,13 @@
           </tr>
         </template>
       </tbody>
- 
+      <tfoot>
+        <tr>
+          <td></td>
+          <td><span v-if="total > 0" class="total">${{ total }}</span><button>Submit</button></td>
+        </tr>
+      </tfoot>
     </table>
-
-    <button>Submit</button>
   </form>
   <!-- end masspay input -->
 
@@ -84,6 +87,11 @@
             { email: 'stuff@stuff.things', amount: 9.77 },
             { email: 'things@stuff.stuff', amount: 5.22 },
           ]
+        }
+      },
+      computed: {
+        total() {
+          return this.recipients.reduce(( sum, { amount }) => sum + amount , 0)
         }
       }
     });
