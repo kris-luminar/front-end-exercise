@@ -53,6 +53,9 @@ button.circle {
   padding: 10px;
   height: 50px;
   width: 50px;
+  position: relative;
+  top: 25px;
+  left: 90%;;
 }
 header {
   margin: auto;
