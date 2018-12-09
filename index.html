@@ -15,62 +15,65 @@
 <body>
   <div id="app">
 
-  <!-- navigation -->
-  <nav>
-    <ul class="nav">
-      <li id="logo">
-        <img src="https://cdn.dwolla.com/images/cms/logos/dwolla/dwolla-logo-white-all.svg" alt="Dwolla"/>
-      </li>
-      <li class="nav__pipe">|</li>
-      <li class="nav__masspay">Masspay</li>
-      <li class="nav__profile">Chester Copperpot</li>
-      <li><a href="#"><button>Log out</button></a></li>
-    </ul>
-  </nav>
-  <!-- end navigation -->
+    <!-- navigation -->
+    <nav>
+      <ul class="nav">
+        <li id="logo">
+          <img src="https://cdn.dwolla.com/images/cms/logos/dwolla/dwolla-logo-white-all.svg" alt="Dwolla" />
+        </li>
+        <li class="nav__pipe">|</li>
+        <li class="nav__masspay">Masspay</li>
+        <li class="nav__profile">Chester Copperpot</li>
+        <li><a href="#"><button>Log out</button></a></li>
+      </ul>
+    </nav>
+    <!-- end navigation -->
 
-  <!-- header -->
-  <header v-if="!isSubmitted">
-    <h1>Create a Masspay<button class='circle button'>+</button></h1>
-  </header>
-  <!-- end header -->
-  <content>
-  <!-- success message -->
-  <section class="success card" v-if="isSubmitted">
-    <p class="in-progress-message">Your Masspay is in progress!</p>
-    <div class="gray-caps">Total</div>
-    <div class="total">${{ total }}</div>
-    <div><button>Create another Masspay</button></div>
-  </section>
-  <!-- end success message -->
+    <!-- header -->
+    <header v-if="!isSubmitted">
+      <h1>Create a Masspay<button class='circle button'>+</button></h1>
+    </header>
+    <!-- end header -->
+    <content>
+      <!-- success message -->
+      <section class="success card" v-if="isSubmitted">
+        <p class="in-progress-message">Your Masspay is in progress!</p>
+        <div class="gray-caps">Total</div>
+        <div class="total">${{ total }}</div>
+        <div><button>Create another Masspay</button></div>
+      </section>
+      <!-- end success message -->
 
-  <!-- masspay input -->
-  <form class="mp_input card" v-if="!isSubmitted">
-    <table>
-      <thead>
-        <tr><th>Recipient</th><th>Amount</th></tr>
-      </thead>
-      <tbody>
-        <template v-for='recipient in recipients'>
-          <tr>
-            <td><input name="receiver" type="text" v-model="recipient.email" /></td>
-            <td><input name="amount" type="number" v-model="recipient.amount" /></td>
-          </tr>
-        </template>
-      </tbody>
-    </table>
-    <div class="total submit"><span v-if="total > 0" class="total">${{ total }}</span><button>Submit</button></div>
+      <!-- masspay input -->
+      <form class="mp_input card" v-if="!isSubmitted">
+        <table>
+          <thead>
+            <tr>
+              <th>Recipient</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for='recipient in recipients'>
+              <tr>
+                <td><input name="receiver" type="text" v-model="recipient.email" /></td>
+                <td><input name="amount" type="number" v-model="recipient.amount" /></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+        <div class="total submit"><span v-if="total > 0" class="total">${{ total }}</span><button>Submit</button></div>
 
-  </form>
-  <!-- end masspay input -->
+      </form>
+      <!-- end masspay input -->
 
-  </content>
+    </content>
   </div>
 
   <script>
     var app = new Vue({
       el: '#app',
-      data: function() {
+      data: function () {
         return {
           recipients: [
             { email: 'stuff@stuff.stuff', amount: 444 },
@@ -83,7 +86,7 @@
       },
       computed: {
         total() {
-          return this.recipients.reduce(( sum, { amount }) => sum + Number(amount) , 0)
+          return this.recipients.reduce((sum, { amount }) => sum + Number(amount), 0)
         },
         isSubmitted() {
           return this.submitted;
