@@ -6,6 +6,7 @@
 body { 
   font-family: 'Roboto', Times, serif;
   font-size: 20px;
+  background-color: #f4f7fb;
 }
 nav {
   height: 60px;
@@ -63,6 +64,7 @@ button.circle {
 }
 header {
   margin: auto;
+  background-color: #fff;
 }
 section {
   margin: auto;
@@ -78,23 +80,22 @@ section.success > * {
 form {
   color: #000;
   font-family: 'Roboto', Times, serif;
-  /* margin: auto; */
 }
 .card {
   background-color: #fff;
-  box-shadow: 0 0 2px 0 rgba(53, 65, 83, 0.12), 0 2px 4px 0 rgba(53, 65, 83, 0.12);
-  /* min-width: 500px; */
   max-width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
+}
+.drop-shadow {
+  box-shadow: 0 0 2px 0 rgba(53, 65, 83, 0.12), 0 2px 4px 0 rgba(53, 65, 83, 0.12);
 }
 form table {
   width: 100%;
 }
 form tr {
   outline: 2px solid #f4f7fb;
-  /* outline-offset:  */
 }
 form th {
   color: #c9d3e0;
@@ -111,7 +112,7 @@ form td input {
   min-width: 30%;
   max-width: 90%;
 }
-form td, form th, form input {
+form td, form th, form td input {
   font-family: 'Roboto', Times, serif;
   font-size: 14px;
   font-weight: 600;
@@ -130,13 +131,12 @@ div.total.submit {
   padding: 10px;
 }
 content {
-  background-color: #f4f7fb;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.gray-caps {
-  text-transform: capitalize;
+span.gray-caps {
+  text-transform: uppercase;
   color: #8393aa;
 }
 .error {

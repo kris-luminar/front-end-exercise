@@ -31,17 +31,18 @@
     <!-- end navigation -->
 
     <!-- header -->
-    <header v-if="!isSubmitted">
+    <header v-if="!isSubmitted" class='dropshadow'>
       <h1 v-on:click="createNewRow">Create a Masspay<button class='circle button'>+</button></h1>
     </header>
     <!-- end header -->
 
     <content>
       <!-- success message -->
-      <section class="success card" v-if="isSubmitted">
+      <section class="success card dropshadow" v-if="isSubmitted">
         <p class="in-progress-message">Your Masspay is in progress!</p>
-        <div class="gray-caps">Total</div>
-        <div class="total">${{ total }}</div>
+        <div><span class="gray-caps">Total</span><br>
+          <span class="total">${{ total }}</span>
+        </div>
         <div><button v-on:click="createNewMasspay">Create another Masspay</button></div>
       </section>
       <!-- end success message -->
