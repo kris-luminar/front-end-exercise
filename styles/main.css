@@ -139,3 +139,6 @@ content {
   text-transform: capitalize;
   color: #8393aa;
 }
+.error {
+  color: red;
+}

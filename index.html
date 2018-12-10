@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:300|Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="./Masspay.js"></script>
 </head>
 
 <body>
@@ -34,30 +35,32 @@
       <h1 v-on:click="createNewRow">Create a Masspay<button class='circle button'>+</button></h1>
     </header>
     <!-- end header -->
+
     <content>
       <!-- success message -->
       <section class="success card" v-if="isSubmitted">
         <p class="in-progress-message">Your Masspay is in progress!</p>
         <div class="gray-caps">Total</div>
         <div class="total">${{ total }}</div>
-        <div><button>Create another Masspay</button></div>
+        <div><button v-on:click="createNewMasspay">Create another Masspay</button></div>
       </section>
       <!-- end success message -->
 
       <!-- masspay input -->
-      <form class="mp_input card" v-if="!isSubmitted">
+      <form class="mp_input card" v-if="!isSubmitted" v-on:submit.prevent="onSubmit">
+        <div class="error">{{ errorMessage }}</div>
         <table>
           <thead>
             <tr>
-              <th>Recipient</th>
+              <th>Recipent</th>
               <th>Amount</th>
             </tr>
           </thead>
           <tbody>
-            <template v-for='recipient in allRecipients'>
+            <template v-for='recipent in allReceivers'>
               <tr>
-                <td><input name="receiver" type="text" v-model="recipient.email" /></td>
-                <td><input name="amount" type="text" v-model="recipient.amount" /></td>
+                <td><input name="receiver" type="text" v-model="recipent.receiver" /></td>
+                <td><input name="amount" type="text" v-model="recipent.amount" /></td>
               </tr>
             </template>
           </tbody>
@@ -75,31 +78,47 @@
       el: '#app',
       data: function () {
         return {
-          recipients: [
-            { email: '', amount: null }
+          receivers: [
+            { receiver: '', amount: null, error: '' }
           ],
-          submitted: false
+          submitted: false,
+          errorMessage: ''
         }
       },
       computed: {
         total() {
-          return this.recipients.reduce((sum, { amount }) => sum + Number(amount), 0)
+          return this.receivers.reduce((sum, { amount }) => sum + Number(amount), 0);
         },
         isSubmitted() {
           return this.submitted;
         },
-        allRecipients() {
-          return this.recipients;
+        allReceivers() {
+          return this.receivers;
         }
       },
       methods: {
         createNewRow() {
-          this.recipients.push({ email: '', amount: null });
+          this.receivers.push({ receiver: '', amount: null, error: '' });
+        },
+        async onSubmit() {
+          let receiverOrAmount;
+          const masspay = Masspay();
+          const result = await masspay.submit(this.receivers);
+          if (result.success) {
+            this.submitted = true;
+            this.errorMessage = '';
+          } else {
+            receiverOrAmount = result.error === 'invalidReceiver' ? 'receiver' : 'amount';
+            this.errorMessage = `Invalid ${receiverOrAmount} on line ${result.item + 1}`;
+          }
+        },
+        createNewMasspay() {
+          this.submitted = false;
+          this.receivers = [{ receiver: '', amount: null, error: '' }];
         }
-      }
+      },
     });
   </script>
 </body>
-
 
 </html>
